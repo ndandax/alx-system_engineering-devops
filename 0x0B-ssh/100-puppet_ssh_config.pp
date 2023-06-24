@@ -1,4 +1,4 @@
-# automating my client config file
+# using puppet to automate my client config file
 include stdlib
 
 file_line { 'Turn off passwd auth':
