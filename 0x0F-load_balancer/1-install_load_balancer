@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Installing and configure HAProxy
+sudo apt install --no-install-recommends software-properties-common -y
+sudo add-apt-repository ppa:vbernat/haproxy-2.4 -y
+sudo apt install haproxy=2.4.\* -y
+sudo apt update && sudo apt upgrade -y
+
+sudo chown -R "$USER":"$USER" /etc/default/haproxy
+sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
+
+echo "ENABLED=1" >> /etc/default/haproxy
+
+config=\
+"
+global
+	log /dev/log	local0
+	log /dev/log	local1 notice
+	chroot /var/lib/haproxy
+	stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+	stats timeout 30s
+	user haproxy
+	group haproxy
+	daemon
+defaults
+	log	global
+	mode	http
+	option	httplog
+	option	dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+	no option http-use-htx
+backend myservers
+	balance roundrobin
+	server 195503-web-01 34.201.165.189:80 check
+	server 195503-web-02 54.236.30.97:80 check
+frontend myfrontend
+	bind :80
+	mode http
+	default_backend myservers
+"
+
+echo "$config" > /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
