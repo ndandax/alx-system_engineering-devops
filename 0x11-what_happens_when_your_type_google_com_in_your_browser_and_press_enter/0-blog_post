@@ -4,35 +4,35 @@ Introduction:
 
 Have you ever wondered what happens behind the scenes when you type a URL like "https://www.google.com" into your browser and hit Enter? The seemingly simple action initiates a complex chain of events involving various systems and protocols. In this blog post, we will take a closer look at the journey of a URL, from DNS requests to the various servers and protocols involved.
 
-1. DNS Request:
+DNS Request:
 
 When you enter "https://www.google.com" into your browser, the first step is to resolve the domain name to an IP address. The browser sends a DNS (Domain Name System) request to a DNS server, typically provided by your Internet Service Provider (ISP). The DNS server translates the human-readable domain name (www.google.com) into the corresponding IP address (e.g., 172.217.3.110).
 
-2. TCP/IP:
+TCP/IP:
 
 Once the browser has obtained the IP address, it establishes a TCP/IP (Transmission Control Protocol/Internet Protocol) connection with the server hosting the website. TCP/IP is a set of rules governing how data is exchanged over the internet. It ensures reliable delivery of data packets between the client (your browser) and the server.
 
-3. Firewall:
+Firewall:
 
 Before the connection is established, it may pass through a firewall. Firewalls act as a barrier between your device and the internet, monitoring and controlling incoming and outgoing network traffic. They help protect against unauthorized access and potential security threats.
 
-4. HTTPS/SSL:
+HTTPS/SSL:
 
 As the connection is established, the browser initiates a secure connection using HTTPS (Hypertext Transfer Protocol Secure) and SSL (Secure Sockets Layer) or its successor, TLS (Transport Layer Security). This encryption protocol ensures that the data exchanged between your browser and the web server remains private and secure.
 
-5. Load-Balancer:
+Load-Balancer:
 
 For popular websites like Google, there is often a cluster of servers working together to handle incoming requests efficiently. A load-balancer sits in front of these servers, distributing incoming traffic across the servers based on various algorithms. Load-balancers help optimize performance and ensure high availability of the website.
 
-6. Web Server:
+Web Server:
 
 After the load-balancer, the request reaches a web server responsible for processing and delivering web pages. In the case of Google, this might involve multiple servers working together to handle the vast amount of traffic. The web server receives the request, retrieves the requested resources, and generates an appropriate response, usually an HTML page.
 
-7. Application Server:
+Application Server:
 
 In some cases, the web server may need to interact with an application server to retrieve dynamic content or perform certain operations. The application server executes server-side code and interacts with databases or other services to process data and generate dynamic content. In Google's case, this could involve various services like search algorithms, advertising systems, and more.
 
-8. Database:
+Database:
 
 For websites that rely on data storage and retrieval, such as Google, databases play a crucial role. The application server interacts with the database to retrieve and store data. Databases are responsible for managing large volumes of structured or unstructured data efficiently and ensuring data integrity and reliability.
 
