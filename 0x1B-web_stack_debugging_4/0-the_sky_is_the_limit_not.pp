@@ -1,5 +1,6 @@
-# Fixing the limit in nginx default.
-exec { 'changeLimit':
-    command => 'sed -i "s/15/4096/g" /etc/default/nginx; service nginx restart',
-    path    => '/usr/bin/:/bin/',
+# Fixing stack
+exec { 'file limit':
+  onlyif   => 'test -e /etc/default/nginx',
+  command  => 'sed -i "5s/[0-9]\+/$( ulimit -n )/" /etc/default/nginx; service nginx restart',
+  provider => shell,
 }
